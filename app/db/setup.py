@@ -11,7 +11,7 @@ from sqlalchemy.pool import NullPool
 
 # NullPool: https://docs.sqlalchemy.org/en/14/orm/extensions/asyncio.html#using-multiple-asyncio-event-loops
 
-from app.config import DB_PATH
+from config import DB_PATH
 
 
 ASYNC_SQLALCHEMY_DATABASE_URL = f"postgresql+asyncpg://{DB_PATH}"

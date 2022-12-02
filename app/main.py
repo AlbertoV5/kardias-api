@@ -6,7 +6,7 @@ from app.db.setup import async_engine
 
 
 # SETUP
-kardias = FastAPI(
+app = FastAPI(
     title="Kardias REST API",
     description="Read and process medical records.",
     version="0.1.0"
@@ -17,7 +17,7 @@ origins = [
     "http://localhost:8000",
     "http://localhost:3000",
 ]
-kardias.add_middleware(
+app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
@@ -26,8 +26,8 @@ kardias.add_middleware(
 )
 async_engine.begin()
 
-@kardias.get("/")
+@app.get("/")
 async def main():
     return {"hello": "Kardias"}
 
-handler = Mangum(kardias)
+handler = Mangum(app)
