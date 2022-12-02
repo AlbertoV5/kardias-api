@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+      <title>REST API</title>
+    
+          <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="_static/theme.css " type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="_static/theme-vendors.js"></script> -->
+      <script src="_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="prev" title="Welcome to Kardias Web API’s documentation!" href="index.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="index.html" class="home-link">
+    
+      <span class="site-name">Kardias Web API</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="index.html#welcome-to-kardias-web-api-s-documentation">Contents:</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">REST API</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#description" class="reference internal">Description</a></li>
+                
+                  <li class="toctree-l2"><a href="#requirements" class="reference internal">Requirements</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+    <li>REST API</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="index.html"
+       title="previous chapter">← Welcome to Kardias Web API’s documentation!</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="rest-api">
+<h1>REST API<a class="headerlink" href="#rest-api" title="Permalink to this heading">¶</a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<p>The objective of a REST API is to tie together all services involved in performing Data Analytics and Machine Learning for internal and end-users. The characteristics of the API are:</p>
+<ul class="simple">
+<li><p>Use async processes to provide a smoother user experience.</p></li>
+<li><p>Call external services and resources to perform complex/blocking tasks.</p></li>
+<li><p>A single two-way connection to the SQL database for consistency.</p></li>
+<li><p>Provide user authentication.</p></li>
+</ul>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">¶</a></h2>
+<section id="data-lake-connectivity">
+<h3>Data Lake Connectivity<a class="headerlink" href="#data-lake-connectivity" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Read a CSV file and store it in Amazon S3</p></li>
+<li><p>Get a list of CSV files stored in Amazon S3</p></li>
+</ol>
+</section>
+<section id="etl-ml-connectivity">
+<h3>ETL / ML Connectivity<a class="headerlink" href="#etl-ml-connectivity" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Ask another service to process a CSV file from Amazon S3.</p></li>
+<li><p>Read Patient data and tell another service to perform ML.</p></li>
+</ol>
+</section>
+<section id="perform-crud-operations">
+<h3>Perform CRUD Operations<a class="headerlink" href="#perform-crud-operations" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Create or Update Patient data.</p></li>
+<li><p>Read from Patient id.</p></li>
+<li><p>Delete from Patient id.</p></li>
+</ol>
+</section>
+<section id="admin-tasks">
+<h3>Admin Tasks<a class="headerlink" href="#admin-tasks" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Create a new User with a name, API key and privilege.</p></li>
+<li><p>Perform database maintenance (remove orphans, verify metadata).</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="index.html"
+       title="previous chapter">← Welcome to Kardias Web API’s documentation!</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2022, Daniela Soto, Galo Cazares, Alberto Valdez.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

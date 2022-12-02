@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "kardiasapi"
+version = "0.1.0"
+description = "Async Web API"
+authors = ["AlbertoV5 <58243333+AlbertoV5@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+uvicorn = "^0.20.0"
+fastapi = "^0.88.0"
+SQLAlchemy = "^1.4.44"
+psycopg2-binary = "^2.9.5"
+Jinja2 = "^3.1.2"
+asyncpg = "^0.27.0"
+SQLAlchemy-Utils = "^0.38.3"
+python-multipart = "^0.0.5"
+mangum = "^0.17.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.0"
+black = "^22.10.0"
+httpx = "^0.23.1"
+pytest-asyncio = "^0.20.2"
+sphinx = "^5.3.0"
+sphinx-press-theme = "^0.8.0"
+myst-parser = "^0.18.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
