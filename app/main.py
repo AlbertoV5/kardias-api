@@ -12,7 +12,7 @@ import uvicorn
 
 app = FastAPI(
     title="Kardias REST API",
-    description="Medical Records Database Access",
+    description="Medical Records Data Analytics",
     version="0.1.0",
 )
 async_engine.begin()
@@ -21,5 +21,5 @@ app.include_router(api.v1.router, prefix="/api/v1")
 
 handler = Mangum(app)
 
-# if __name__ == '__main__':
-#     uvicorn.run(app)
+if __name__ == '__main__':
+    uvicorn.run(app)
