@@ -6,6 +6,7 @@ class UserData(BaseModel):
 
     id: int
     username: str
+    tier: int
 
     class Config:
         orm_mode = True

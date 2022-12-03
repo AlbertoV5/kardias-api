@@ -6,14 +6,14 @@ from sqlalchemy.sql import func
 from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession, AsyncScalarResult
 
-from app.admin.models import ApiKeys
+from app.admin.models import User
 
 
-async def find_api_key(db: AsyncSession, key: str) -> Optional[ApiKeys]:
+async def find_user_key(db: AsyncSession, key: str) -> Optional[User]:
     """Get key from database if any."""
     count: AsyncScalarResult = await db.scalar(
-        select(func.count(ApiKeys.id)).where(ApiKeys.key == key)
+        select(func.count(User.id)).where(User.key == key)
     )
     if count == 0:
         return None
-    return await db.scalar(select(ApiKeys).where(ApiKeys.key == key))
+    return await db.scalar(select(User).where(User.key == key))
