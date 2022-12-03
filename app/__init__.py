@@ -1,1 +1,2 @@
-from app.main import app # add app to top level
+from app.main import handler
+from app.main import app
