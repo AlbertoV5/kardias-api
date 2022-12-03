@@ -1,5 +1,6 @@
 """Environment Variables"""
 import os
+import boto3
 
 
 # DB
@@ -9,3 +10,7 @@ DB_USER = os.environ["kardias_db_user"]
 DB_SALT = os.environ["kardias_db_salt"]
 # DB_PATH = "postgres@localhost:5432/kardias-2"
 DB_PATH = f"{DB_USER}:{DB_PASS}@{DB_HOST}:5432/kardias"
+
+# S3
+S3_BUCKET = 'kardias-data'
+MAX_CSV_FILE_SIZE_BYTES = 2000000 # 2 MB
