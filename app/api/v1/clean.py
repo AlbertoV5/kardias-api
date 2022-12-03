@@ -13,8 +13,7 @@ from app.crud.generic import (
     get_by_ids,
 )
 
-from app.s3.setup import upload_csv_to_bucket
-from app.config import MAX_CSV_FILE_SIZE_BYTES
+from app.s3.setup import upload_csv_to_bucket, get_list_of_csv_files
 
 
 router = fastapi.APIRouter()
@@ -51,15 +50,6 @@ async def create_or_update_records(
     """Update or Insert multiple records."""
     await upsert_all(db, CleanDB, clean_data)
     return {"Upsert": "OK"}
-
-
-@router.put("/uploadfile/")
-async def create_upload_csv_file(file: UploadFile,):
-    """Upload a CSV file to S3 bucket."""
-    result = await upload_csv_to_bucket(file, MAX_CSV_FILE_SIZE_BYTES)
-    if result is None:
-        raise HTTPException(status_code=413, detail=f"File exceeds max size: {MAX_CSV_FILE_SIZE_BYTES} bytes.")
-    return {"Upload": "OK"}
 
 
 @router.delete("/", status_code=204)

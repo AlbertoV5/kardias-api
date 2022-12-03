@@ -1,6 +1,5 @@
 """Environment Variables"""
 import os
-import boto3
 
 
 # DB

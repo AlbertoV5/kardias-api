@@ -7,7 +7,8 @@ from app.api.v1 import (
     origin,
     diagnosis_general,
     diagnosis_main,
-    surgical_procedure,
+    storage,
+    surgical_procedure
 )
 
 router = APIRouter()
@@ -46,5 +47,11 @@ router.include_router(
     clean.router, 
     prefix="/clean",
     tags=["ETL"],
+    dependencies=[Depends(get_api_key)],
+)
+router.include_router(
+    storage.router,
+    prefix="/storage",
+    tags=["Storage"],
     dependencies=[Depends(get_api_key)],
 )
