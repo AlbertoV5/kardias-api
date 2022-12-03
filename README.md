@@ -2,6 +2,9 @@
 
 Web API for Kardias Project.
 
+FastAPI | SQLAlchemy | PostgreSQL | Pydantic
+
+
 ## AWS Lambda
 
 https://fxnqc075vd.execute-api.us-east-1.amazonaws.com/dev
