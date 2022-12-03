@@ -33,5 +33,5 @@ async def get_api_key(
         if user is not None:
             return UserData(id=user.id, username=user.username, tier=user.tier)
     raise HTTPException(
-        status_code=HTTP_403_FORBIDDEN, detail="Could not validate API KEY"
+        status_code=HTTP_403_FORBIDDEN, detail="Could not validate access token"
     )
