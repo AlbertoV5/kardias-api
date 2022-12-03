@@ -15,7 +15,7 @@ from app.admin.methods import find_api_key
 from app.admin.schemas import UserData
 
 
-api_key_header = APIKeyHeader(name="api_key", auto_error=False)
+api_key_header = APIKeyHeader(name="access_token", auto_error=False)
 
 
 async def get_api_key(
