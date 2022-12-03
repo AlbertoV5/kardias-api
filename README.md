@@ -4,28 +4,21 @@ Web API for Kardias Project.
 
 ## AWS Lambda
 
-Install requirements.
+
+### Container
+
+Build image.
 
 ```shell
-pip install -t lib -r requirements.txt
+docker build -t kardias-api . 
 ```
 
-Zip requirements.
+Test locally.
 
 ```shell
-cd lib && zip ../lambda_function.zip -r . && cd ..
+docker run -p 9000:8080 kardias-api 
 ```
 
-Include the app folder.
+More: https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-create-from-base
 
-```shell
-zip lambda_function.zip -u -r ./app
-```
 
-Include main.py
-
-```shell
-zip lambda_function.zip -u main.py
-```
-
-https://www.youtube.com/watch?v=RGIM4JfsSk0&ab_channel=pixegami

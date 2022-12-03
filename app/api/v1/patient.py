@@ -9,7 +9,7 @@ from app.crud.patient import get_patient_records
 from app.admin.schemas import UserData
 from app.models.api_schemas import PatientRequest
 from app.models.db_schemas import Patient
-
+    
 router = fastapi.APIRouter()
 
 
