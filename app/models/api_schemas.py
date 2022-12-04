@@ -2,7 +2,6 @@ from pydantic import BaseModel
 from datetime import date
 
 
-
 class CleanRequestID(BaseModel):
     """Request Model for Clean data from ID"""
 
@@ -107,3 +106,38 @@ class SurgicalProcedureRequest(BaseRequest):
     """Request Model for Surgical Procedure Data"""
 
     columns: SurgicalProceduresFilter
+
+
+# COUNTS
+
+
+class AppearanceCount(BaseModel):
+    appearance: str
+    count: int
+
+
+class OriginCount(BaseModel):
+    state: str
+    municipality: str
+    altitude: int
+    count: int
+
+
+class StateCount(BaseModel):
+    state: str
+    count: int
+
+
+class DiagnosisMainCount(BaseModel):
+    diagnosis_main: str
+    count: int
+
+
+class DiagnosisGeneralCount(BaseModel):
+    diagnosis_general: str
+    count: int
+
+
+class SurgicalProcedureCount(BaseModel):
+    surgical_procedure: str
+    count: int

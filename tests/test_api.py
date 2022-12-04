@@ -9,7 +9,6 @@ import os
 from app import app
 
 
-
 log = logging.getLogger(__name__)
 KEY = os.environ["kardias_api_key"]
 
@@ -21,13 +20,15 @@ class RecordsList(BaseModel):
 @pytest.mark.asyncio
 async def test_read_records():
     async with AsyncClient(app=app, base_url="http://test_1") as ac:
-        
+
         URL = "/api/v1"
         headers = {"access_token": KEY}
         # Perform GET
         AMOUNT = 5
         PAGE = 0
-        response = await ac.get(f"{URL}/clean/?amount={AMOUNT}&page={PAGE}", headers=headers)
+        response = await ac.get(
+            f"{URL}/clean/?amount={AMOUNT}&page={PAGE}", headers=headers
+        )
         assert response.status_code == 200
         response_a = RecordsList(records=response.json())
 

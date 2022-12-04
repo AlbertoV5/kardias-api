@@ -9,11 +9,13 @@ from app.config import MAX_CSV_FILE_SIZE_BYTES
 
 
 VALID_SUFFIX = {".csv", ".CSV"}
-S3 = boto3.client('s3')
-S3_RESOURCE = boto3.resource('s3')
+S3 = boto3.client("s3")
+S3_RESOURCE = boto3.resource("s3")
 
 
-async def upload_csv_to_bucket(file: UploadFile, max_size: int = MAX_CSV_FILE_SIZE_BYTES):
+async def upload_csv_to_bucket(
+    file: UploadFile, max_size: int = MAX_CSV_FILE_SIZE_BYTES
+):
     """
     Load a File to S3. Makes sure that size doesn't exceeds given max_size.
     Raise 422 if .csv is not in the name, 413 if file is too big. See app.config.
@@ -29,7 +31,9 @@ async def upload_csv_to_bucket(file: UploadFile, max_size: int = MAX_CSV_FILE_SI
         for chunk in file.file:
             real_file_size += len(chunk)
             if real_file_size > max_size:
-                raise HTTPException(413, f"File exceeds max size: {MAX_CSV_FILE_SIZE_BYTES} bytes.")
+                raise HTTPException(
+                    413, f"File exceeds max size: {MAX_CSV_FILE_SIZE_BYTES} bytes."
+                )
             temp.write(chunk)
     # S3
     with open(temp.name, "rb") as data:
@@ -40,6 +44,7 @@ async def get_list_of_csv_files():
     """Get list of files in bucket."""
     return [f.key for f in S3_RESOURCE.Bucket(S3_BUCKET).objects.all()]
 
+
 async def get_csv_file(filename: str):
     """Get csv file by name. Raise 404 if not found."""
     s3_object = S3_RESOURCE.Bucket(S3_BUCKET).Object(filename)
@@ -47,6 +52,6 @@ async def get_csv_file(filename: str):
         with BytesIO() as data:
             s3_object.download_fileobj(data)
             response = s3_object.get()
-            return response['Body'].read()
+            return response["Body"].read()
     except:
         raise HTTPException(404, f"File {filename} not found.")

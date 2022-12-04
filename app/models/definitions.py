@@ -192,7 +192,10 @@ COLUMNS_MODELS = {
 ORIGINS_COLUMNS = ["state", "municipality", "altitude"]
 """Columns related to the Origin Models."""
 ORIGINS_MODELS = {
-    column: (SchemaModelPair(Origin, OriginDB), SchemaModelPair(PatientOrigin, PatientOriginDB))
+    column: (
+        SchemaModelPair(Origin, OriginDB),
+        SchemaModelPair(PatientOrigin, PatientOriginDB),
+    )
     for column in ORIGINS_COLUMNS
 }
 """Lookup table for all the columns related to the Origin Models."""

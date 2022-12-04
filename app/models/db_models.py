@@ -13,7 +13,6 @@ from sqlalchemy import (
 from app.db.setup import Base
 
 
-
 class CleanDB(Base):
 
     __tablename__ = "clean"

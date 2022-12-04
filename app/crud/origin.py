@@ -1,10 +1,10 @@
-from sqlalchemy.ext.asyncio import AsyncSession, AsyncScalarResult
+from sqlalchemy.ext.asyncio import AsyncSession, AsyncScalarResult, AsyncResult
 from sqlalchemy.future import select
-from sqlalchemy.sql import Select
+from sqlalchemy.sql import Select, label, text, func, desc
 
-from app.models.api_schemas import OriginRequest
+from app.models.api_schemas import OriginRequest, StateCount
 from app.models.db_schemas import Origin
-from app.models.db_models import OriginDB
+from app.models.db_models import OriginDB, PatientOriginDB
 
 
 async def get_origin_records(request: OriginRequest, db: AsyncSession) -> list[Origin]:
@@ -24,4 +24,18 @@ async def get_origin_records(request: OriginRequest, db: AsyncSession) -> list[O
     sel = sel.where(OriginDB.state.in_(data.state)) if len(data.state) != 0 else sel
     # Query
     result: AsyncScalarResult = await db.scalars(sel.offset(offset).limit(limit))
+    return result.all()
+
+
+async def get_state_count(
+    offset: int, limit: int, db: AsyncSession
+) -> list[StateCount]:
+    """Get a list of surgical procedures and their count."""
+    sel = (
+        select(OriginDB.state, label("count", func.count(PatientOriginDB.patient_id)))
+        .join(PatientOriginDB, PatientOriginDB.token == OriginDB.token)
+        .group_by(OriginDB.state)
+        .order_by(desc(text("count")))
+    )
+    result: AsyncResult = await db.execute(sel.offset(offset).limit(limit))
     return result.all()

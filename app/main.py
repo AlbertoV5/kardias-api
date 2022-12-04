@@ -21,5 +21,5 @@ app.include_router(api.v1.router, prefix="/api/v1")
 
 handler = Mangum(app)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     uvicorn.run(app)

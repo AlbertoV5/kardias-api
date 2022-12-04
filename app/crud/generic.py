@@ -3,11 +3,11 @@ Logic for querying the clean table.
 """
 from typing import Optional
 
-from sqlalchemy.sql import delete, func
+from sqlalchemy.sql import delete, func, alias, text, desc, label
 from sqlalchemy.future import select
 from sqlalchemy.dialects.postgresql import insert, Insert
 from sqlalchemy import Column
-from sqlalchemy.ext.asyncio import AsyncSession, AsyncScalarResult
+from sqlalchemy.ext.asyncio import AsyncSession, AsyncScalarResult, AsyncResult
 
 from app.models.definitions import (
     GenericModel,
@@ -163,3 +163,27 @@ async def upsert_all(
     # Terciary Tables (must delete or discontinued records persist).
     await delete_all(db, model, get_records_ids(records))
     await create_all(db, model, records)
+
+
+async def get_count_list(
+    offset: int,
+    limit: int,
+    table_a: GenericModel,
+    table_b: GenericModel,
+    columns: list[Column],
+    db: AsyncSession,
+) -> list[GenericModel]:
+    """Get a list of surgical procedures and their count."""
+    a = (
+        select(table_a.token, label("count", func.count(table_a.patient_id)))
+        .group_by(table_a.token)
+    )
+    sel = select(
+        *columns, a.c.count
+    ).join(
+        table_b, table_b.token == a.c.token
+    ).order_by(
+        desc(a.c.count)
+    )
+    result: AsyncResult = await db.execute(sel.offset(offset).limit(limit))
+    return result.all()
