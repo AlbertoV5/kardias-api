@@ -23,10 +23,10 @@ async def read_records(
     return result
 
 
-@router.get("/", response_model=list[SurgicalProcedureCount], status_code=200)
-async def read_counts(
+@router.get("/list", response_model=list[SurgicalProcedureCount], status_code=200)
+async def read_value_counts(
     offset: int = 0, limit: int = 10, db: AsyncSession = Depends(get_db)
-):
+):  
     """Get a list of records with count"""
     result = await get_count_list(
         offset,

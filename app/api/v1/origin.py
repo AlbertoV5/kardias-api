@@ -21,8 +21,8 @@ async def read_records(request: OriginRequest, db: AsyncSession = Depends(get_db
     return result
 
 
-@router.get("/", response_model=list[OriginCount], status_code=200)
-async def read_counts(
+@router.get("/list", response_model=list[OriginCount], status_code=200)
+async def read_value_counts(
     offset: int = 0, limit: int = 10, db: AsyncSession = Depends(get_db)
 ):
     """Get a list of records with count"""
@@ -37,8 +37,8 @@ async def read_counts(
     return result
 
 
-@router.get("/state", response_model=list[StateCount], status_code=200)
-async def read_counts(
+@router.get("/state/list", response_model=list[StateCount], status_code=200)
+async def read_value_counts_state(
     offset: int = 0, limit: int = 10, db: AsyncSession = Depends(get_db)
 ):
     """Get a list of records with count"""
