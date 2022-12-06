@@ -53,3 +53,11 @@ Using Elastic Container Service to deploy to AWS Lambda.
 Connect via API Gateway (REST API).
 
 Use proxy in API Gateway, etc.
+
+
+### Notes
+
+https://www.sqlshack.com/calling-an-aws-lambda-function-from-another-lambda-function/
+
+https://fastapi.tiangolo.com/tutorial/background-tasks/
+

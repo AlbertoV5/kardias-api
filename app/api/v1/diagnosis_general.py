@@ -5,6 +5,8 @@ import fastapi
 from app.db.setup import get_db
 from app.crud.diagnosis_general import get_diagnosis_general_records
 from app.crud.generic import get_count_list
+from app.crud.generic import upsert_all
+
 
 from app.models.api_schemas import DiagnosisGeneralRequest, DiagnosisGeneralCount
 from app.models.db_schemas import DiagnosisGeneral
@@ -36,3 +38,13 @@ async def read_value_counts(
         db,
     )
     return result
+
+
+@router.put("/", status_code=201)
+async def create_or_update_records(
+    clean_data: list[DiagnosisGeneral],
+    db: AsyncSession = Depends(get_db),
+):
+    """Update or Insert multiple records."""
+    await upsert_all(db, DiagnosisGeneralDB, clean_data)
+    return {"Upsert": "OK"}

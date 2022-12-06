@@ -13,8 +13,6 @@ from app.crud.generic import (
     get_by_ids,
 )
 
-from app.s3.setup import upload_csv_to_bucket, get_list_of_csv_files
-
 
 router = fastapi.APIRouter()
 

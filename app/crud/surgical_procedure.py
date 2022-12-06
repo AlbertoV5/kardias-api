@@ -20,7 +20,7 @@ async def get_surgical_procedure_records(
     # Select
     sel: Select = select(SurgicalProcedureDB)
     sel = (
-        sel.where(SurgicalProcedureDB.surgical_procedure.in_(data.diagnosis_main))
+        sel.where(SurgicalProcedureDB.surgical_procedure.in_(data.surgical_procedure))
         if len(data.surgical_procedure) != 0
         else sel
     )

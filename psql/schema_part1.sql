@@ -61,6 +61,7 @@ CREATE TABLE appearance
     token VARCHAR(100) NOT NULL,
     appearance VARCHAR(100) NOT NULL,
     keywords VARCHAR(100) NOT NULL,
+    category VARCHAR(50),
     CONSTRAINT appearance_appearance_token_pk PRIMARY KEY (token)
 ) ;
 
@@ -70,6 +71,7 @@ CREATE TABLE diagnosis_general
     token VARCHAR(200) NOT NULL,
     diagnosis_general VARCHAR(400) NOT NULL,
     keywords VARCHAR(400) NOT NULL,
+    category VARCHAR(50),
     CONSTRAINT diagnosis_general_token_pk PRIMARY KEY (token)
 ) ;
 
@@ -79,6 +81,7 @@ CREATE TABLE diagnosis_main
     token VARCHAR(200) NOT NULL,
     diagnosis_main VARCHAR(400) NOT NULL,
     keywords VARCHAR(400) NOT NULL,
+    category VARCHAR(50),
     CONSTRAINT diagnosis_main_token_pk PRIMARY KEY (token)
 ) ;
 
@@ -88,6 +91,7 @@ CREATE TABLE surgical_procedure
     token VARCHAR(200) NOT NULL,
     surgical_procedure VARCHAR(400) NOT NULL,
     keywords VARCHAR(400) NOT NULL,
+    category VARCHAR(50),
     CONSTRAINT surgical_procedure_token_pk PRIMARY KEY (token)
 ) ;
 

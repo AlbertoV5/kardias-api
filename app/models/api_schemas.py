@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from datetime import date
+from typing import Optional
 
 
 class CleanRequestID(BaseModel):
@@ -141,3 +142,42 @@ class DiagnosisGeneralCount(BaseModel):
 class SurgicalProcedureCount(BaseModel):
     surgical_procedure: str
     count: int
+
+
+# Patient Extra Data
+
+class PatientRequestByID(BaseModel):
+
+    patient_id: list[int]
+
+
+class PatientAppearanceResponse(BaseModel):
+
+    patient_id: int
+    appearance: str
+
+
+class PatientOriginResponse(BaseModel):
+
+    patient_id: int
+    state: str
+    municipality: str
+    altitude: int
+
+
+class PatientDiagnosisMainResponse(BaseModel):
+
+    patient_id: int
+    diagnosis_main: list[str]
+
+
+class PatientDiagnosisGeneralResponse(BaseModel):
+
+    patient_id: int
+    diagnosis_general: list[str]
+
+
+class PatientSurgicalProcedureResponse(BaseModel):
+
+    patient_id: int
+    surgical_procedure: list[str]

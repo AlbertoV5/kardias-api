@@ -174,16 +174,13 @@ async def get_count_list(
     db: AsyncSession,
 ) -> list[GenericModel]:
     """Get a list of surgical procedures and their count."""
-    a = (
-        select(table_a.token, label("count", func.count(table_a.patient_id)))
-        .group_by(table_a.token)
+    a = select(table_a.token, label("count", func.count(table_a.patient_id))).group_by(
+        table_a.token
     )
-    sel = select(
-        *columns, a.c.count
-    ).join(
-        table_b, table_b.token == a.c.token
-    ).order_by(
-        desc(a.c.count)
+    sel = (
+        select(*columns, a.c.count)
+        .join(table_b, table_b.token == a.c.token)
+        .order_by(desc(a.c.count))
     )
     result: AsyncResult = await db.execute(sel.offset(offset).limit(limit))
     return result.all()
