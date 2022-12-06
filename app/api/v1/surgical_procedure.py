@@ -6,7 +6,9 @@ from app.db.setup import get_db
 from app.crud.surgical_procedure import get_surgical_procedure_records
 from app.crud.generic import get_count_list
 from app.crud.generic import upsert_all
+from app.admin.auth import get_api_key
 
+from app.admin.models import User
 from app.models.api_schemas import SurgicalProcedureRequest, SurgicalProcedureCount
 from app.models.db_schemas import SurgicalProcedure
 from app.models.db_models import SurgicalProcedureDB, PatientSurgicalProcedureDB
@@ -44,6 +46,7 @@ async def read_value_counts(
 async def create_or_update_records(
     clean_data: list[SurgicalProcedure],
     db: AsyncSession = Depends(get_db),
+    user_data: User = Depends(get_api_key),
 ):
     """Update or Insert multiple records."""
     await upsert_all(db, SurgicalProcedureDB, clean_data)

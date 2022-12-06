@@ -6,7 +6,9 @@ from app.db.setup import get_db
 from app.crud.origin import get_origin_records, get_state_count
 from app.crud.generic import get_count_list
 from app.crud.generic import upsert_all
+from app.admin.auth import get_api_key
 
+from app.admin.models import User
 from app.models.api_schemas import OriginRequest, OriginCount, StateCount
 from app.models.db_schemas import Origin
 from app.models.db_models import PatientOriginDB, OriginDB
@@ -50,6 +52,7 @@ async def read_value_counts_state(
 async def create_or_update_records(
     clean_data: list[Origin],
     db: AsyncSession = Depends(get_db),
+    user_data: User = Depends(get_api_key),
 ):
     """Update or Insert multiple records."""
     await upsert_all(db, OriginDB, clean_data)

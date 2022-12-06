@@ -6,12 +6,15 @@ import uvicorn
 from app.db.setup import async_engine
 from app import api
 
+with open("app/README.md", "r") as readme:
+    description = readme.read()
 
 app = FastAPI(
     title="Kardias REST API",
-    description="Medical Records Data Analytics",
-    version="0.1.0",
-    # openapi_prefix="/dev"
+    description=description,
+    version="0.2.0",
+    # root_path="/dev",
+    docs_url="/docs",
 )
 
 async_engine.begin()
@@ -19,7 +22,7 @@ app.include_router(api.v1.router, prefix="/api/v1")
 
 @app.get("/")
 async def root():
-    return {"message": "Kardias"}
+    return {"Hello": "Kardias"}
 
 handler = Mangum(app)
 

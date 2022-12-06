@@ -78,12 +78,12 @@ router.include_router(
 router.include_router(
     clean.router,
     prefix="/clean",
-    tags=["Clean"],
+    tags=["ETL"],
     dependencies=[Depends(get_api_key)],
 )
 router.include_router(
     storage.router,
     prefix="/storage",
-    tags=["Storage"],
+    tags=["ETL"],
     dependencies=[Depends(get_api_key)],
 )
