@@ -7,7 +7,9 @@ FastAPI | SQLAlchemy | PostgreSQL | Pydantic | AWS
 
 ## AWS Lambda
 
-https://fxnqc075vd.execute-api.us-east-1.amazonaws.com/dev
+Deployment:
+
+https://fxnqc075vd.execute-api.us-east-1.amazonaws.com/dev/docs
 
 Endpoints:
 
