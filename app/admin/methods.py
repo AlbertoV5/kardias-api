@@ -9,10 +9,10 @@ from sqlalchemy.ext.asyncio import AsyncSession, AsyncScalarResult
 from app.admin.models import User
 
 
-async def find_user_key(db: AsyncSession, key: str, tier: int) -> Optional[User]:
+async def find_user_key(db: AsyncSession, key: str) -> Optional[User]:
     """Get key from database if any."""
     count: AsyncScalarResult = await db.scalar(
-        select(func.count(User.id)).where(User.key == key).where(User.tier >= tier)
+        select(func.count(User.id)).where(User.key == key)
     )
     if count == 0:
         return None
