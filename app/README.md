@@ -11,6 +11,35 @@ Patient data is also related to other Medical data, like Cardiac Diagnosis and S
 
 The API provides access to POST and GET methods for retrieving lists of medical terms associated with the Patient data, which are stored separately from the Patient records as they may contain labels and information not related to the Patient as well as many-to-one relationships with the Patient. 
 
+## ML Prediction
+
+### Valid Diagnosis: 
+    
+- "CIA"
+- "CIV"
+- "Estenosis"
+- "PCA"
+- "Other_Diagnosis"
+- "Coartacion Aortica"
+- "Tetralogia de Fallot"
+- "Atresia"
+- "Post-Surgical Procedure"
+- "Hipoplasia"
+
+
+### Valid Surgical Procedures.
+
+- "Parche comunicacion interauricular CIA"
+- "Vena cava inferior parche"
+- "Other_Procedure"
+- "Cierre de Conducto Arterioso"
+- "Reparacion de Canal AV"
+- "Reparacion de Tetralogia de Fallot"
+- "Procedimiento de Glenn"
+- "Reparacion de arco aortico"
+- "Fistula sistemico pulmonar"
+- "Procedimiento de Fontan"
+
 
 ## Copyright
 

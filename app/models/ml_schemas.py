@@ -20,11 +20,14 @@ class KMeansClusterResult(BaseModel):
 class KMeansClusterData(BaseModel):
 
     cluster: int
-    n_patients: float
+    n_patients: int
     stay_days: float
     rachs: float
     cx_previous: float
     age_days: float
+    weight_kg: float
+    height_cm: float
+    expired: float
 
 
 class KMeansFullData(BaseModel):

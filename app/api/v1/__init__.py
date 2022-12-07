@@ -88,7 +88,6 @@ router.include_router(
     tags=["Surgical Procedure"],
     dependencies=[Depends(get_auth_tier_1)],
 )
-
 # ML predict
 router.include_router(
     ml_predict.router,
@@ -96,16 +95,16 @@ router.include_router(
     tags=["Machine Learning"],
     dependencies=[Depends(get_auth_tier_1)],
 )
-# ETL
-router.include_router(
-    clean.router,
-    prefix="/clean",
-    tags=["ETL"],
-    dependencies=[Depends(get_auth_tier_2)],
-)
-router.include_router(
-    storage.router,
-    prefix="/storage",
-    tags=["ETL"],
-    dependencies=[Depends(get_auth_tier_2)],
-)
+# ETL (Deprecated)
+# router.include_router(
+#     clean.router,
+#     prefix="/clean",
+#     tags=["ETL"],
+#     dependencies=[Depends(get_auth_tier_2)],
+# )
+# router.include_router(
+#     storage.router,
+#     prefix="/storage",
+#     tags=["ETL"],
+#     dependencies=[Depends(get_auth_tier_2)],
+# )
