@@ -11,18 +11,9 @@ Deployment:
 
 https://fxnqc075vd.execute-api.us-east-1.amazonaws.com/dev/docs
 
-Authorization token (tier 1): ilovetableau99
+Demo Authorization token (tier 1): ilovetableau99
 
 ![Auth](./docs/img/auth.png)
-
-
-Endpoints:
-
-- GET /
-- POST /api/v1/patient
-- ...
-- POST GET DELETE UPDATE /api/v1/clean (authentication)
-
 
 ### Container
 
@@ -68,3 +59,10 @@ https://www.sqlshack.com/calling-an-aws-lambda-function-from-another-lambda-func
 
 https://fastapi.tiangolo.com/tutorial/background-tasks/
 
+
+## Endpoints:
+
+- GET /
+- POST /api/v1/patient
+- ...
+- POST GET DELETE UPDATE /api/v1/clean (Tier 2 auth)

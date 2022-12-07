@@ -13,10 +13,19 @@ from app.api.v1 import (
     patient_diagnosis_general,
     patient_diagnosis_main,
     patient_origin,
-    patient_surgical_procedure
+    patient_surgical_procedure,
+    ml_predict
 )
 
 router = APIRouter()
+
+# ML predict
+router.include_router(
+    ml_predict.router,
+    prefix="/ml",
+    tags=["Machine Learning"],
+    dependencies=[Depends(get_auth_tier_1)],
+)
 
 # PATIENT DATA ROUTERS
 router.include_router(
