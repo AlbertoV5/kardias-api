@@ -1,8 +1,16 @@
 import fastapi
 
-from app.ml.models.kmeans import kmeans_model, get_cluster_data
-from app.ml.pre_processing.kmeans import pre_process_kmeans 
-from app.models.ml_schemas import PatientPredictKMeans, KMeansClusterResult, KMeansClusterData
+from app.ml.models.kmeans import (
+    kmeans_model,
+    get_cluster_data,
+    get_linreg_rachs_staydays,
+)
+from app.ml.pre_processing.kmeans import pre_process_kmeans
+from app.models.ml_schemas import (
+    PatientPredictKMeans,
+    KMeansClusterResult,
+    KMeansFullData,
+)
 
 router = fastapi.APIRouter()
 
@@ -17,7 +25,9 @@ async def predict_kmeans_clusters(request: PatientPredictKMeans):
     return {"cluster": prediction[0]}
 
 
-@router.get("/",response_model=list[KMeansClusterData], status_code=200)
+@router.get("/", response_model=KMeansFullData, status_code=200)
 async def read_kmeans_clusters():
     """Get the Pre-trained Cluster Info."""
-    return get_cluster_data()
+    data = get_cluster_data()
+    linreg = get_linreg_rachs_staydays(data)
+    return {"clusters": data.to_dict(orient="records"), "linear_regression": linreg}

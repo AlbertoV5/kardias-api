@@ -25,4 +25,6 @@ while key != key2:
 
 key = blake2b(key.encode("utf-8"), salt=DB_SALT.encode("utf-8")).hexdigest()
 tier = input("Enter tier (max 32 chars)\n")
-engine.execute(f"INSERT INTO {table} (username, key, tier) VALUES ('{username}', '{key}', {tier});")
+engine.execute(
+    f"INSERT INTO {table} (username, key, tier) VALUES ('{username}', '{key}', {tier});"
+)

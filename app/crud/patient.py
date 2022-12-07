@@ -33,12 +33,14 @@ async def get_patient_appearance(request: PatientRequestByID, db: AsyncSession):
     sel: Select = select(PatientAppearanceDB.patient_id, AppearanceDB.appearance)
     sel = sel.where(PatientAppearanceDB.patient_id.in_(data))
     sel = sel.join(AppearanceDB, AppearanceDB.token == PatientAppearanceDB.token)
-    result: AsyncScalarResult = await db.scalars(sel.order_by(PatientAppearanceDB.patient_id))
+    result: AsyncScalarResult = await db.scalars(
+        sel.order_by(PatientAppearanceDB.patient_id)
+    )
     return result.all()
 
 
 async def get_patient_extra(
-    request: PatientRequestByID, 
+    request: PatientRequestByID,
     model_patient: TertiaryModel,
     model_term: SecondaryModel,
     columns: list[Column],
@@ -54,7 +56,7 @@ async def get_patient_extra(
 
 
 async def get_patient_extra_agg(
-    request: PatientRequestByID, 
+    request: PatientRequestByID,
     model_patient: TertiaryModel,
     model_term: SecondaryModel,
     agg: Column,

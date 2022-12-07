@@ -5,14 +5,26 @@ from app.ml.models.kmeans import kmeans_scaler
 
 
 ENCODED_COLUMNS = [
-    'CIA', 'CIV', 'Estenosis', 'PCA',
-    'Other_Diagnosis', 'Coartacion Aortica', 'Tetralogia de Fallot',
-    'Atresia', 'Post-Surgical Procedure', 'Hipoplasia',
-    'Parche comunicacion interauricular CIA', 'Vena cava inferior parche',
-    'Other_Procedure', 'Cierre de Conducto Arterioso',
-    'Reparacion de Canal AV', 'Reparacion de Tetralogia de Fallot',
-    'Procedimiento de Glenn', 'Reparacion de arco aortico',
-    'Fistula sistemico pulmonar', 'Procedimiento de Fontan'
+    "CIA",
+    "CIV",
+    "Estenosis",
+    "PCA",
+    "Other_Diagnosis",
+    "Coartacion Aortica",
+    "Tetralogia de Fallot",
+    "Atresia",
+    "Post-Surgical Procedure",
+    "Hipoplasia",
+    "Parche comunicacion interauricular CIA",
+    "Vena cava inferior parche",
+    "Other_Procedure",
+    "Cierre de Conducto Arterioso",
+    "Reparacion de Canal AV",
+    "Reparacion de Tetralogia de Fallot",
+    "Procedimiento de Glenn",
+    "Reparacion de arco aortico",
+    "Fistula sistemico pulmonar",
+    "Procedimiento de Fontan",
 ]
 EXCLUDE = {"diagnosis_main", "surgical_procedure"}
 

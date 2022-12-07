@@ -14,7 +14,7 @@ class PatientPredictKMeans(BaseModel):
 
 class KMeansClusterResult(BaseModel):
 
-   cluster: int
+    cluster: int
 
 
 class KMeansClusterData(BaseModel):
@@ -25,3 +25,9 @@ class KMeansClusterData(BaseModel):
     rachs: float
     cx_previous: float
     age_days: float
+
+
+class KMeansFullData(BaseModel):
+
+    clusters: list[KMeansClusterData]
+    linear_regression: list[float]

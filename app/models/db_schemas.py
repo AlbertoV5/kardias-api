@@ -47,11 +47,11 @@ class Patient(BaseModel):
     class Config:
         orm_mode = True
 
-    @validator('weight_kg')
+    @validator("weight_kg")
     def round_weight(cls, v):
         return round(v, 2)
 
-    @validator('height_cm')
+    @validator("height_cm")
     def round_height(cls, v):
         return round(v, 2)
 

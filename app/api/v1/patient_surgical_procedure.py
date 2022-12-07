@@ -15,16 +15,18 @@ from app.models.api_schemas import PatientSurgicalProcedureResponse, PatientRequ
 router = fastapi.APIRouter()
 
 
-@router.post("/", response_model=list[PatientSurgicalProcedureResponse], status_code=200)
+@router.post(
+    "/", response_model=list[PatientSurgicalProcedureResponse], status_code=200
+)
 async def read_records(request: PatientRequestByID, db: AsyncSession = Depends(get_db)):
     """Get a list of records by ids."""
     result = await get_patient_extra_agg(
-        request, 
+        request,
         PatientSurgicalProcedureDB,
         SurgicalProcedureDB,
         SurgicalProcedureDB.surgical_procedure,
         "surgical_procedure",
-        db
+        db,
     )
     if len(result) == 0:
         raise HTTPException(404, "No patients were found.")

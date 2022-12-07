@@ -14,22 +14,15 @@ from app.api.v1 import (
     patient_diagnosis_main,
     patient_origin,
     patient_surgical_procedure,
-    ml_predict
+    ml_predict,
 )
 
 router = APIRouter()
 
-# ML predict
-router.include_router(
-    ml_predict.router,
-    prefix="/ml",
-    tags=["Machine Learning"],
-    dependencies=[Depends(get_auth_tier_1)],
-)
 
-# PATIENT DATA ROUTERS
+# PATIENT DATA ROUTES
 router.include_router(
-    patient.router, 
+    patient.router,
     prefix="/patient",
     tags=["Patient"],
     dependencies=[Depends(get_auth_tier_1)],
@@ -57,7 +50,6 @@ router.include_router(
     prefix="/patient_diagnosis_general",
     tags=["Patient"],
     dependencies=[Depends(get_auth_tier_1)],
-
 )
 router.include_router(
     patient_surgical_procedure.router,
@@ -96,6 +88,15 @@ router.include_router(
     tags=["Surgical Procedure"],
     dependencies=[Depends(get_auth_tier_1)],
 )
+
+# ML predict
+router.include_router(
+    ml_predict.router,
+    prefix="/ml",
+    tags=["Machine Learning"],
+    dependencies=[Depends(get_auth_tier_1)],
+)
+# ETL
 router.include_router(
     clean.router,
     prefix="/clean",

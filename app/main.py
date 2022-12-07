@@ -12,8 +12,8 @@ with open("app/README.md", "r") as readme:
 app = FastAPI(
     title="Kardias REST API",
     description=description,
-    version="0.2.0",
-    # root_path="/dev",
+    version="0.3.0",
+    root_path="/dev",
     docs_url="/docs",
 )
 
@@ -28,9 +28,11 @@ app.add_middleware(
 async_engine.begin()
 app.include_router(api.v1.router, prefix="/api/v1")
 
+
 @app.get("/")
 async def root():
     return {"Hello": "Kardias"}
+
 
 handler = Mangum(app)
 

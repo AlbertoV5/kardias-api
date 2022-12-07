@@ -19,12 +19,12 @@ router = fastapi.APIRouter()
 async def read_records(request: PatientRequestByID, db: AsyncSession = Depends(get_db)):
     """Get a list of records by ids."""
     result = await get_patient_extra_agg(
-        request, 
+        request,
         PatientDiagnosisMainDB,
         DiagnosisMainDB,
         DiagnosisMainDB.diagnosis_main,
         "diagnosis_main",
-        db
+        db,
     )
     if len(result) == 0:
         raise HTTPException(404, "No patients were found.")
