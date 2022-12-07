@@ -6,7 +6,7 @@ from app.db.setup import get_db
 from app.crud.appearance import get_appearance_records
 from app.crud.generic import get_count_list
 from app.crud.generic import upsert_all
-from app.admin.auth import get_api_key
+from app.admin.auth import get_auth_tier_2
 
 from app.admin.models import User
 from app.models.api_schemas import AppearanceRequest, AppearanceCount
@@ -43,7 +43,7 @@ async def read_value_counts(
 async def create_or_update_records(
     clean_data: list[Appearance],
     db: AsyncSession = Depends(get_db),
-    user_data: User = Depends(get_api_key),
+    user_data: User = Depends(get_auth_tier_2),
 ):
     """Update or Insert multiple records."""
     await upsert_all(db, AppearanceDB, clean_data)

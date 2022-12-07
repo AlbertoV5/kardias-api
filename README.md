@@ -11,6 +11,11 @@ Deployment:
 
 https://fxnqc075vd.execute-api.us-east-1.amazonaws.com/dev/docs
 
+Authorization token (tier 1): ilovetableau99
+
+![Auth](./docs/img/auth.png)
+
+
 Endpoints:
 
 - GET /

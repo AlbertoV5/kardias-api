@@ -13,7 +13,7 @@ app = FastAPI(
     title="Kardias REST API",
     description=description,
     version="0.2.0",
-    root_path="/dev",
+    # root_path="/dev",
     docs_url="/docs",
 )
 

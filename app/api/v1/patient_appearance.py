@@ -5,7 +5,7 @@ import fastapi
 from app.db.setup import get_db
 from app.crud.generic import upsert_all
 from app.crud.patient import get_patient_extra
-from app.admin.auth import get_api_key
+from app.admin.auth import get_auth_tier_2
 
 from app.admin.models import User
 from app.models.db_schemas import PatientAppearance
@@ -34,7 +34,7 @@ async def read_records(request: PatientRequestByID, db: AsyncSession = Depends(g
 async def create_or_update_records(
     clean_data: list[PatientAppearance],
     db: AsyncSession = Depends(get_db),
-    user_data: User = Depends(get_api_key),
+    user_data: User = Depends(get_auth_tier_2),
 ):
     """Update or Insert multiple records."""
     await upsert_all(db, PatientAppearanceDB, clean_data)

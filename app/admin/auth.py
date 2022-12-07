@@ -17,8 +17,10 @@ from app.admin.schemas import UserData
 
 api_key_header = APIKeyHeader(name="access_token", auto_error=False)
 
+USER_TIER_1 = 1
+USER_TIER_2 = 2
 
-async def get_api_key(
+async def get_auth_tier_1(
     api_key_header: str = Security(api_key_header), db: AsyncSession = Depends(get_db)
 ) -> UserData:
     """Check if API key is in database, return UserData if it is, either raise 403."""
@@ -29,6 +31,26 @@ async def get_api_key(
             blake2b(
                 api_key_header.encode("utf-8"), salt=salt.encode("utf-8")
             ).hexdigest(),
+            USER_TIER_1
+        )
+        if user is not None:
+            return UserData(id=user.id, username=user.username, tier=user.tier)
+    raise HTTPException(
+        status_code=HTTP_403_FORBIDDEN, detail="Could not validate access token"
+    )
+
+async def get_auth_tier_2(
+    api_key_header: str = Security(api_key_header), db: AsyncSession = Depends(get_db)
+) -> UserData:
+    """"""
+    salt = os.environ["kardias_db_salt"]
+    if api_key_header is not None:
+        user = await find_user_key(
+            db,
+            blake2b(
+                api_key_header.encode("utf-8"), salt=salt.encode("utf-8")
+            ).hexdigest(),
+            USER_TIER_2
         )
         if user is not None:
             return UserData(id=user.id, username=user.username, tier=user.tier)

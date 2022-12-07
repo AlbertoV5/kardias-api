@@ -24,4 +24,5 @@ while key != key2:
     print("Passwords dont match" if key != key2 else "OK!")
 
 key = blake2b(key.encode("utf-8"), salt=DB_SALT.encode("utf-8")).hexdigest()
-engine.execute(f"INSERT INTO {table} (username, key, tier) VALUES ('{username}', '{key}', 5);")
+tier = input("Enter tier (max 32 chars)\n")
+engine.execute(f"INSERT INTO {table} (username, key, tier) VALUES ('{username}', '{key}', {tier});")
