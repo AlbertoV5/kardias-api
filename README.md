@@ -11,9 +11,6 @@ Deployment:
 
 https://fxnqc075vd.execute-api.us-east-1.amazonaws.com/dev/docs
 
-Demo Authorization token (tier 1): tempaccess8903
-
-![Auth](./docs/img/auth.png)
 
 ### Container
 

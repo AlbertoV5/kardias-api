@@ -17,9 +17,20 @@ app = FastAPI(
     docs_url="/docs",
 )
 
+# origins = [
+#     "https://pages.github.com"
+#     "http://localhost:8000"
+#     "http://localhost:5500"
+# ]
+# origins = [
+#     "http://localhost:5500",
+#     "https://danielasotosainz.github.io"
+# ]
+origins = ["*"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
