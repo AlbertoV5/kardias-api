@@ -43,4 +43,4 @@ The API provides access to POST and GET methods for retrieving lists of medical 
 
 ## Copyright
 
-2022, Daniela Soto, Galo Cazares, Alberto Valdez
+2022 Alberto Valdez
