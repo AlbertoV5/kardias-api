@@ -27,7 +27,7 @@ async def predict_kmeans_clusters(request: PatientPredictKMeans):
 
     # Predict
     prediction = kmeans_model.predict(patient_data)
-    return {"cluster": prediction[0]}
+    return {"cluster": prediction[0] + 1}
 
 
 @router.get("/kmeans/clusters", response_model=KMeansFullData, status_code=200)
